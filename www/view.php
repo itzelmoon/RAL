@@ -39,28 +39,28 @@ else if (@$_POST['post']) {
 	$page = $resource->resolve();
 	$until = 3;
 	if ($_POST['robocheck-fail']) {
-		$reason = "Sorry, I don't let robots post here!";
+		$reason = "Lo siento, ¡no dejo que los robots publiquen aquí!";
 		header($_SERVER["SERVER_PROTOCOL"]." 400 Bad Request"); 
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
 	} else if (!isset($_POST['robocheck'])) {
-		$reason = "Did you forget to verify your humanity?";
+		$reason = "¿Olvidaste verificar que eras humano?";
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
 	} else if (empty(@$_POST['content'])) {
-		$reason = "Just what are you trying to do?";
+		$reason = "¿Qué estás tratando de hacer?";
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
 	} else if (strlen($_POST['content']) < CONFIG_MIN_POST_BYTES) {
-		$reason = "Your post is too short... please write some more!";
+		$reason = "Tu publicación es muy corta... ¡por favor escribe más!";
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
 	} else if (strlen($_POST['content']) > CONFIG_MAX_POST_BYTES) {
-		$reason = "Your post is too long... be more concise!";
+		$reason = "Tu publicación es demasiado larga... ¡sé más breve!";
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
@@ -69,7 +69,7 @@ else if (@$_POST['post']) {
 	$b8 = $rm->getb8();
 	$spamminess = $b8->classify($rm->asHtml($_POST['content']));
 	if ($spamminess > CONFIG_SPAM_THRESHOLD) {
-		$reason = "Hmm... error code: " . round($spamminess * 100);
+		$reason = "Mmm... código de error: " . round($spamminess * 100);
 		header("Refresh: $until; url=$page");
 		include "{$ROOT}template/PostFailure.php";
 		die;
