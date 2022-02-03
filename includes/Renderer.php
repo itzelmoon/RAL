@@ -184,7 +184,7 @@ HTML;
 			print <<<HTML
 	<article>
 	<h2>{$r->title()}</h2>	<nav class=info-links>
-		<a class=button href="{$r->resolveComposer()}">New Topic / Thread</a>
+		<a class=button href="{$r->resolveComposer()}">Inicia un conversación/ Hilo</a>
 	</nav>
 
 HTML;
@@ -231,7 +231,7 @@ HTML;
 		else $bbcoderef = "{$WROOT}bbcode-help.php";
 		print <<<HTML
 <article class=composer>
-		<h2>New topic on {$r->title()}</h2>
+		<h2>Nuevo hilo en on {$r->title()}</h2>
 		<form method=POST action="$action" class=composer>
 		<div class=textarea>
 			<textarea autofocus rows=5 tabindex=1
@@ -240,10 +240,10 @@ HTML;
 			name=content>$content</textarea>
 		</div>
 		<div class=buttons>
-			<a href="$cancel" class="cancel button">Cancel</a>
+			<a href="$cancel" class="cancel button">Cancelar</a>
 			<button value=preview name=preview
 			tabindex=2 class=button
-			type=submit>Next</button>
+			type=submit>Siguiente</button>
 			<a href="$bbcoderef">Using BBCode</a>
 		</div>
 		</form>
@@ -254,9 +254,9 @@ HTML;
 	public function PreviewReply($p) {
 		print <<<HTML
 		<h2>Double Check</h2>
-		<p>Before you post, please verify that everything is as you
-		intend. If the preview looks okay, continue by verifying your
-		humanity and submitting your post.</p>
+		<p>Antes de postear, verifica que todo está como lo deseas enviar.
+			Si la vista previa se ve bien, continúa al test antibot 
+			y enviar tu publicación.</p>
 
 HTML;
 
@@ -284,9 +284,9 @@ HTML;
 	public function PreviewTopic($t) {
 		print <<<HTML
 		<h2>Double Check</h2>
-		<p>Before you post, please verify that everything is as you
-		intend. If the preview looks okay, continue by verifying your
-		humanity and submitting your post.</p>
+		<p>Antes de postear, verifica que todo está como lo deseas enviar.
+			Si la vista previa se ve bien, continúa al test antibot 
+			y enviar tu publicación.</p>
 
 HTML;
 		$encodedContent = htmlspecialchars($t->Content);
@@ -295,16 +295,16 @@ HTML;
 		<form method=POST class=composer>
 		<input type=hidden name=content value="$encodedContent">
 		<input name=robocheck id=robocheck type=checkbox>
-		<label for=robocheck>I am not a robot</label>
+		<label for=robocheck>No soy un robot</label>
 		<div class="buttons">
-			<a href="$cancel" class="cancel button">Cancel</a>
+			<a href="$cancel" class="cancel button">Cancelar</a>
 			<button name=post value=post type=submit
 			tabindex=2>Post</button>
 		</div>
 		<input id=robocheck-fail class="only dumb robots sit in this
 		box" name=robocheck-fail type=checkbox>
 		<label class="only dumb robots sit in this box"
-		for=robocheck>Only dumb robots fill out this box</label>
+		for=robocheck>Solo los robots tontos llenan este cuadro</label>
 		</form>
 
 HTML;
@@ -318,7 +318,7 @@ HTML;
 		if (CONFIG_CLEAN_URL) $bbcoderef = "{$WROOT}bbcode-help";
 		else $bbcoderef = "{$WROOT}bbcode-help.php";
 		print <<<HTML
-		<h2>Reply to {$r->title()}</h2>
+		<h2>Responder a {$r->title()}</h2>
 		<form method=POST action="$action" class=composer>
 		<div class=textarea>
 			<textarea autofocus rows=5 tabindex=1
@@ -327,11 +327,11 @@ HTML;
 			name=content>$content</textarea>
 		</div>
 		<div class=buttons>
-			<a href="$cancel" class="cancel button">Cancel</a>
+			<a href="$cancel" class="cancel button">Cancelar</a>
 			<button value=preview name=preview
 			tabindex=2 class=button
-			type=submit>Next</button>
-			<a href="$bbcoderef">Using BBCode</a>
+			type=submit>Enviar</button>
+			<a href="$bbcoderef">Usando BBCode</a>
 		</div>
 		</form>
 
@@ -403,17 +403,17 @@ HTML;
 		if ($topic->resolve()) {
 			$href = htmlentities($topic->resolve());
 			print <<<HTML
-			<span class=expand><a href="$href">Read Topic</a></span>
+			<span class=expand><a href="$href">Leer Hilo </a></span>
 
 HTML;
 		} else { print <<<HTML
-			<span class=expand>Topic Preview</span>
+			<span class=expand>Hilo anterior</span>
 HTML;
 		} print <<<HTML
 			</div>
 		<ul class=attrs>
 		<li><time datetime="$datetime">$prettydate</time></li>
-		<li>{$topic->Replies} Replies</li>
+		<li>{$topic->Replies} Respuestas</li>
 		</ul>
 </header><hr />
 HTML;
@@ -442,7 +442,7 @@ HTML;
 <article>
 <h2>{$r->title()}</h2>
 <nav class=info-links>
-	<a class=button href="{$r->resolveComposer()}">Reply to Topic</a>
+	<a class=button href="{$r->resolveComposer()}">Responde este hilo</a>
 </nav>
 
 HTML;
